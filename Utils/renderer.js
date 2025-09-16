@@ -75,13 +75,13 @@ function renderSegments(model, opts) {
         if (s.rapid) line.setAttribute("stroke-dasharray", "3 5");
         gPaths.appendChild(line);
     }
-    // draw workpiece axis & tool initial
+    // dessiner l'axe de la pièce et l'initiale de l'outil
     const axis = createEl("line", {
         x1: -100,
         y1: 0,
-        x2: 100,
+        x2: 200,
         y2: 0,
-        stroke: "#213340",
+        stroke: "#820000ff",
         "stroke-width": 0.2,
     });
     gPaths.appendChild(axis);
@@ -89,7 +89,7 @@ function renderSegments(model, opts) {
     const tg = createEl("circle", {
         cx: xs(0),
         cy: 0,
-        r: 0.4,
+        r: 0.8,
         fill: "#f6bd3b",
     });
     tool.appendChild(tg);
