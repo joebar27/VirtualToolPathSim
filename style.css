@@ -20,20 +20,6 @@ header {
     gap: 12px;
     align-items: center;
 }
-.btn {
-    background: var(--panel);
-    border: 1px solid #17212b;
-    padding: 8px 10px;
-    border-radius: 10px;
-    color: var(--text);
-    cursor: pointer;
-}
-.panel {
-    background: var(--panel);
-    padding: 12px;
-    border-radius: 12px;
-    border: 1px solid #17212b;
-}
 main {
     display: grid;
     grid-template-columns: 360px 1fr;
@@ -51,11 +37,6 @@ textarea {
     padding: 8px;
     font-family: monospace;
 }
-.row {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-}
 label {
     color: var(--muted);
     font-size: 13px;
@@ -63,7 +44,7 @@ label {
 #stageWrap {
     background: #071018;
     border-radius: 12px;
-    padding: 12px;
+    padding: 10px;
     overflow: hidden;
 }
 svg {
@@ -71,6 +52,25 @@ svg {
     height: 78vh;
     display: block;
     background: linear-gradient(180deg, #071018, #07161d);
+}
+.btn {
+    background: var(--panel);
+    border: 1px solid #17212b;
+    padding: 8px 10px;
+    border-radius: 10px;
+    color: var(--text);
+    cursor: pointer;
+}
+.panel {
+    background: var(--panel);
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid #17212b;
+}
+.row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
 }
 .controls {
     display: flex;
