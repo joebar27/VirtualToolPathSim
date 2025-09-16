@@ -1,0 +1,84 @@
+:root {
+    --bg: #0b1220;
+    --panel: #0f1722;
+    --muted: #9aa6b2;
+    --text: #e6edf3;
+    --accent: #58a6ff;
+}
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Inter, system-ui, Segoe UI, Roboto, Arial;
+    padding: 12px;
+}
+header {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+.btn {
+    background: var(--panel);
+    border: 1px solid #17212b;
+    padding: 8px 10px;
+    border-radius: 10px;
+    color: var(--text);
+    cursor: pointer;
+}
+.panel {
+    background: var(--panel);
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid #17212b;
+}
+main {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 12px;
+    margin-top: 12px;
+    min-height: 70vh;
+}
+textarea {
+    width: 100%;
+    height: 200px;
+    background: #071019;
+    border-radius: 8px;
+    border: 1px solid #13202a;
+    color: var(--text);
+    padding: 8px;
+    font-family: monospace;
+}
+.row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+label {
+    color: var(--muted);
+    font-size: 13px;
+}
+#stageWrap {
+    background: #071018;
+    border-radius: 12px;
+    padding: 12px;
+    overflow: hidden;
+}
+svg {
+    width: 100%;
+    height: 78vh;
+    display: block;
+    background: linear-gradient(180deg, #071018, #07161d);
+}
+.controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-top: 8px;
+}
+.stat {
+    font-size: 13px;
+    color: var(--muted);
+}

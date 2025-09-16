@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Simulateur de tournage X–Z</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <header>
+        <h3 style="margin:0">Simulateur tournage Fanuc — X–Z</h3>
+        <div style="flex:1"></div>
+        <button id="btn-load" class="btn">Charger .nc/.txt</button>
+        <button id="btn-run" class="btn">Simuler</button>
+    </header>
+    <main>
+        <section class="panel">
+            <div class="row"><label>Collez le G-code (commande Fanuc)</label></div>
+            <textarea id="gcode" spellcheck="false"></textarea>
+
+            <div class="row" style="margin-top:8px;gap:10px;flex-wrap:wrap">
+                <label><input type="checkbox" id="chk-diam" /> X en diamètre (sinon rayon)</label>
+                <label><input type="checkbox" id="chk-show-rapid" checked /> Afficher G00</label>
+                <label><input type="checkbox" id="chk-anim" checked /> Animer</label>
+            </div>
+
+            <div class="controls">
+                <button id="play" class="btn">▶ Play</button>
+                <button id="pause" class="btn">⏸ Pause</button>
+                <button id="step" class="btn">⏭ Step</button>
+                <label class="stat">Vitesse: <input id="speed" type="range" min="0.1" max="5" step="0.1"
+                        value="1" /></label>
+            </div>
+
+            <div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                <div class="panel small"><b>Statistiques</b>
+                    <div id="stat-lines" class="stat">Lignes: —</div>
+                    <div id="stat-segs" class="stat">Segments: —</div>
+                </div>
+                <div class="panel small"><b>Coordonnées</b>
+                    <div id="coord-x" class="stat">X: —</div>
+                    <div id="coord-z" class="stat">Z: —</div>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="stageWrap" class="panel">
+            <svg id="stage" viewBox="-50 -25 100 50" preserveAspectRatio="xMidYMid meet"
+                aria-label="Aire de simulation tournage">
+                <g id="grid"></g>
+                <g id="paths"></g>
+                <g id="toolLayer"></g>
+            </svg>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>
