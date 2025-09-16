@@ -4,20 +4,25 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Simulateur de tournage X–Z</title>
+    <title>VirtualToolPathSim</title>
+    <meta name="description" content="Simulateur de parcours d'outil pour machines-outils CNC (G-code Fanuc) - Tournage X-Z" />
+    <meta name="author" content="Jean-Marc Lienher" />
+    <meta name="keywords" content="CNC, G-code, Fanuc, simulation, usinage, tournage, X-Z, machine-outil" />
+    <link rel="icon" href="Assets/Img/Logo_VirtualToolPathSim(white).png" />
     <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
     <header>
-        <h3 style="margin:0">Simulateur tournage Fanuc — X–Z</h3>
+        <img src="Assets/Img/Logo_VirtualToolPathSim(white).png" alt="Logo VirtualToolPathSim" height="64" />
+        <h3 style="margin:0">VirtualToolPathSim</h3>
         <div style="flex:1"></div>
         <button id="btn-load" class="btn">Charger .nc/.txt</button>
         <button id="btn-run" class="btn">Simuler</button>
     </header>
     <main>
         <section class="panel">
-            <div class="row"><label>Collez le G-code (commande Fanuc)</label></div>
+            <div class="row"><label>Taper ou collez votre code ISO (M/G-code) ici :</label></div>
             <textarea id="gcode" spellcheck="false"></textarea>
 
             <div class="row" style="margin-top:8px;gap:10px;flex-wrap:wrap">
