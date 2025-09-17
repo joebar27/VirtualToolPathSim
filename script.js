@@ -1,3 +1,4 @@
+console.log(screen.width);
 // ------------------ UI wiring ------------------
 $("#btn-run").addEventListener("click", () => {
     const text = $("#gcode").value.trim();
