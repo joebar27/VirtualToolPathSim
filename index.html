@@ -18,6 +18,12 @@
         <div class="logoTitle">
             <img src="Assets/Img/Logo_VirtualToolPathSim(white).png" alt="Logo VirtualToolPathSim" height="64" />
             <h3>VirtualToolPathSim</h3>
+            <input type="checkbox" id="burger-toggle">
+            <label id="burger" for="burger-toggle">
+                <span class="barBurger-1"></span>
+                <span class="barBurger-2"></span>
+                <span class="barBurger-3"></span>
+            </label>
         </div>
         <div class="headerButtons">
             <div id="list-machines" class="listMachines">
@@ -34,7 +40,9 @@
     </header>
     <main>
         <section class="panel">
-            <div class="row"><label>Taper ou collez votre code ISO (M/G-code) ici :</label></div>
+            <div class="row">
+                <p>Taper ou collez votre code ISO (M/G-code) ici :</p>
+            </div>
             <textarea id="gcode" spellcheck="false"></textarea>
 
             <div class="row" style="margin-top:8px;gap:10px;flex-wrap:wrap">

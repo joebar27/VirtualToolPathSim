@@ -60,7 +60,7 @@ textarea {
     padding: 8px;
     font-family: monospace;
 }
-label {
+p {
     color: var(--muted);
     font-size: 13px;
 }
@@ -83,11 +83,10 @@ svg {
     border-radius: 10px;
     color: var(--text);
     cursor: pointer;
-    
 }
 .btn:hover {
     background: #172b3a;
-    border-color: #1c3142;   
+    border-color: #1c3142;
 }
 .panel {
     background: var(--panel);
@@ -134,59 +133,98 @@ svg {
         font-weight: 600;
         padding: 0;
     }
-    /* .listMachines {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        width: 30%;
-    } */
+
+    /* Le conteneur du burger */
+    #burger {
+        display: inline-block;
+        cursor: pointer;
+    }
+    .barBurger-1,
+    .barBurger-2,
+    .barBurger-3 {
+        width: 25px;
+        height: 3px;
+        border-radius: 5px;
+        background-color: var(--text);
+        margin: 4px 0;
+        transition: 0.4s;
+    }
+    #burger span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        border-radius: 5px;
+        margin: 5px 0;
+        background: var(--text);
+        transition: 0.4s;
+    }
+    #burger-toggle:checked + #burger .barBurger-1 {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    #burger-toggle:checked + #burger .barBurger-2 {
+        opacity: 0;
+    }
+    #burger-toggle:checked + #burger .barBurger-3 {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+    #burger-toggle {
+        display: none;
+    }
+
+    /* La liste des machines */
     #list-machines {
         display: flex;
         flex-direction: column;
         gap: 8px;
         width: 50%;
-      position: relative;
+        position: relative;
     }
-
     select {
-      appearance: none; /* enlève le style natif */
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      background: white;
-      border: 2px solid #0077ff;
-      border-radius: 8px;
-      padding: 10px 40px 10px 15px;
-      font-size: 12px;
-      cursor: pointer;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background: var(--panel);
+        border: 2px solid #1c3142;
+        border-radius: 8px;
+        padding: 10px 40px 10px 15px;
+        font-size: 12px;
+        cursor: pointer;
+        color: var(--text);
     }
-
-    /* Petite flèche custom */
     .listMachines::after {
-      content: "▼";
-      font-size: 16px;
-      color: #0077ff;
-      position: absolute;
-      right: 12px;
-      top: 50%;
-      transform: translateY(-70%);
-      pointer-events: none; /* clique passe à travers */
+        content: "▼";
+        font-size: 16px;
+        color: #e6edf3;
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-70%);
+        pointer-events: none; /* clique passe à travers */
     }
-
     select:focus {
-      outline: none;
-      border-color: #0055aa;
-      box-shadow: 0 0 5px rgba(0, 119, 255, 0.5);
+        outline: none;
+        border-color: #1c3142;
+        color: var(--text)
+        box-shadow: 0 0 5px var(--muted);
     }
-
+    option {
+        background: #172b3a;
+        color: var(--text);
+    }
+    option:checked {
+        background: #1c3142;
+    }
+    /* Les boutons */
     .headerButtons {
         display: flex;
         gap: 8px;
         margin-left: auto;
     }
     .btn {
-    padding: 4px 8px;
-    
-}
+        padding: 4px 8px;
+    }
+
+
     main {
         display: grid;
         grid-template-columns: 1fr;
