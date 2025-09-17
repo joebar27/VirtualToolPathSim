@@ -5,7 +5,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>VirtualToolPathSim</title>
-    <meta name="description" content="Simulateur de parcours d'outil pour machines-outils CNC (G-code Fanuc) - Tournage X-Z" />
+    <meta name="description"
+        content="Simulateur de parcours d'outil pour machines-outils CNC (G-code Fanuc) - Tournage X-Z" />
     <meta name="author" content="Jean-Marc Lienher" />
     <meta name="keywords" content="CNC, G-code, Fanuc, simulation, usinage, tournage, X-Z, machine-outil" />
     <link rel="icon" href="Assets/Img/Logo_VirtualToolPathSim(white).png" />
@@ -14,11 +15,22 @@
 
 <body>
     <header>
-        <img src="Assets/Img/Logo_VirtualToolPathSim(white).png" alt="Logo VirtualToolPathSim" height="64" />
-        <h3 style="margin:0">VirtualToolPathSim</h3>
-        <div style="flex:1"></div>
-        <button id="btn-load" class="btn">Charger .nc/.txt</button>
-        <button id="btn-run" class="btn">Simuler</button>
+        <div class="logoTitle">
+            <img src="Assets/Img/Logo_VirtualToolPathSim(white).png" alt="Logo VirtualToolPathSim" height="64" />
+            <h3>VirtualToolPathSim</h3>
+        </div>
+        <div class="headerButtons">
+            <div id="list-machines" class="listMachines">
+                <select id="select-machine">
+                    <option value="SL1000">MORI SEIKI SL1000</option>
+                    <option value="RT1SP">REALMECA RT-1SP</option>
+                    <option value="TC600">REALMECA TC600</option>
+                </select>
+            </div>
+            <button id="btn-load" class="btn">Charger .nc/.txt</button>
+            <button id="btn-run" class="btn">Simuler</button>
+        </div>
+
     </header>
     <main>
         <section class="panel">

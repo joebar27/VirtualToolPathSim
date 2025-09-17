@@ -1,4 +1,6 @@
-console.log(screen.width);
+console.log("Largeur: ", screen.width);
+console.log("Hauteur: ", screen.height);
+
 // ------------------ UI wiring ------------------
 $("#btn-run").addEventListener("click", () => {
     const text = $("#gcode").value.trim();
