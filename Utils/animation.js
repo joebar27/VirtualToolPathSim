@@ -1,8 +1,11 @@
 // ------------------ Animation/Simulator ------------------
 let runner = null;
 let currentIndex = 0;
-let position = { x: 0, z: 0 };
+let position = { x: 100, z: 100 };
+
 function placeTool(x, z) {
+    // const x = y;
+    // const z = x;
     const isDia = window.__sim?.isDiameter;
     const px = isDia ? x / 2 : x;
     const g = window.__sim.toolEl;

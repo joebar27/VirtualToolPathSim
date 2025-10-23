@@ -1,35 +1,37 @@
 // ------------------ G-code Parser (Fanuc, simplified) ------------------
-function parseGCode(text) {
+function parseGCode(text, g54Value) {
     const lines = text
         .split(/\r?\n/)
         .map((l) => l.trim())
         .filter((l) => l && !l.startsWith("(") && !l.startsWith(";"));
     let absolute = true; // G90/G91 - assume absolute by default
     let unitScale = 1; // G21 mm, G20 inches
-    let xPiece = 0,
-        zPiece = 0; // G54 origin piece
-    let x = 0,
-        z = 0,
-        f = 0; // current position
+    let xPiece = 0.000,
+        zPiece = g54Value ; // G54 origin piece
+    let x = 0.000,
+        z = 0.000,
+        f = 0.000; // current position
     let stats = { lines: lines.length, segs: 0 };
+    console.log("Parsing G-code, total lines:", stats.lines);
     const segments = []; // {x1,z1,x2,z2,rapid:boolean, feed,meta}
 
     function parseParams(s) {
         const out = {};
-        const re = /([A-Za-z])\s*(-?\d*\.?\d+)/g;
+        const reg = /([A-Za-z])\s*(-?\d*\.?\d+)/g;
         let m;
-        while ((m = re.exec(s))) {
+        while ((m = reg.exec(s))) {
             out[m[1].toUpperCase()] = parseFloat(m[2]);
         }
+        console.log("Parsing params for line:", out);
         return out;
     }
 
     for (const raw of lines) {
-        // remove comments after ; or ()
+        // Supprime les commentaires après ";"
         const line = raw.split(";")[0].trim();
         console.log("Line:", line);
         if (!line) continue;
-        // extract words
+        // Extraction des mots (clés et valeurs)
         const words = line.match(/[A-Za-z][-+]?[0-9]*\.?[0-9]*/g) || [];
         // find G or M codes
         const gcodes = words
@@ -54,11 +56,11 @@ function parseGCode(text) {
         }
         if (line.match(/G54/i)) {   // origin piece
             xPiece = 0;
-            zPiece = 0;
+            zPiece = g54Value;
             continue; // no movement
         }
 
-        // if contains G00/G0/G01/G1/G02/G2/G03/G3 parse motion
+        // Si la ligne contient => G00/G0/G01/G1/G02/G2/G03/G3 parse motion
         const motion = words.find((w) => /^G(0|00|1|01|2|02|3|03)$/i.test(w));
         if (motion) {
             const params = parseParams(line);

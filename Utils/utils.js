@@ -8,6 +8,8 @@ function createEl(tag, attrs = {}) {
     }
     return e;
 }
+
+// format number with d decimals
 function fmt(n, d = 3) {
     return Number.isFinite(n) ? n.toFixed(d) : "—";
 }

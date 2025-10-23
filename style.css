@@ -111,6 +111,19 @@ svg {
     color: var(--muted);
 }
 
+#g54box{
+    font-size: 16px;
+    width: 120px;
+}
+.g54warning{
+    color: #f01010;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#burgerDiv {
+    display: none;
+}
 /* ----------------------------------
    | Media Query for mobile devices |
    ---------------------------------- */
@@ -135,6 +148,9 @@ svg {
     }
 
     /* Le conteneur du burger */
+    #burgerDiv {
+        display: block;
+    }
     #burger {
         display: inline-block;
         cursor: pointer;
@@ -204,7 +220,7 @@ svg {
     select:focus {
         outline: none;
         border-color: #1c3142;
-        color: var(--text)
+        color: var(--text);
         box-shadow: 0 0 5px var(--muted);
     }
     option {
@@ -223,7 +239,6 @@ svg {
     .btn {
         padding: 4px 8px;
     }
-
 
     main {
         display: grid;

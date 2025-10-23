@@ -3,37 +3,62 @@ const stage = $("#stage");
 const gPaths = $("#paths");
 const gTool = $("#toolLayer");
 const gGrid = $("#grid");
+
 function clear() {
     gPaths.innerHTML = "";
     gTool.innerHTML = "";
 }
+
 function drawGrid() {
     gGrid.innerHTML = "";
-    const w = 200,
-        h = 200;
+    // recupérer les dimensions du svg
+    const w = 200, h = 200;
     const step = 5;
-    for (let x = -100; x <= 100; x += step) {
+
+    // lignes verticales
+    for (let x = step; x <= h; x += step) {
         const l = createEl("line", {
             x1: x,
-            y1: -100,
+            y1: 0,
             x2: x,
-            y2: 100,
-            stroke: "#071b25",
+            y2: w,
+            stroke: "#393737ff",
             "stroke-width": 0.1,
         });
         gGrid.appendChild(l);
     }
-    for (let z = -100; z <= 100; z += step) {
+    // lignes horizontales
+    for (let z = step; z <= w; z += step) {
         const l = createEl("line", {
-            x1: -100,
-            y1: -z,
-            x2: 100,
-            y2: -z,
-            stroke: "#071b25",
+            x1: 0,
+            y1: z,
+            x2: h,
+            y2: z,
+            stroke: "#393737ff",
             "stroke-width": 0.1,
         });
         gGrid.appendChild(l);
     }
+    // materialisation des axes X et Z
+    const axeX = createEl("line", {
+            x1: 0,
+            y1: 0,
+            x2: 0,
+            y2: h,
+            stroke: "#f50606ff",
+            "stroke-width": 0.2,
+        });
+        gGrid.appendChild(axeX);
+
+    const axeZ = createEl("line", {
+            x1: 0,
+            y1: h/2,
+            x2: w,
+            y2: h/2,
+            stroke: "#f50606ff",
+            "stroke-width": 0.2,
+        });
+        gGrid.appendChild(axeZ);
 }
 
 function renderSegments(model, opts) {
@@ -41,7 +66,7 @@ function renderSegments(model, opts) {
     drawGrid();
     const showRapid = $("#chk-show-rapid").checked;
     const isDiameter = $("#chk-diam").checked;
-    // find bounds
+    // determine bounds
     let minX = Infinity,
         maxX = -Infinity,
         minZ = Infinity,
@@ -58,7 +83,7 @@ function renderSegments(model, opts) {
         minZ = -10;
         maxZ = 10;
     }
-    // if X is diameter, convert to radius for drawing
+    // Si X est en diametre, convertir vers radius pour le cadrage
     const xs = (v) => (isDiameter ? v / 2 : v);
     // draw segments
     for (const s of model.segments) {

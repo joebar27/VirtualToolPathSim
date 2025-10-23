@@ -18,12 +18,15 @@
         <div class="logoTitle">
             <img src="Assets/Img/Logo_VirtualToolPathSim(white).png" alt="Logo VirtualToolPathSim" height="64" />
             <h3>VirtualToolPathSim</h3>
-            <input type="checkbox" id="burger-toggle">
-            <label id="burger" for="burger-toggle">
-                <span class="barBurger-1"></span>
-                <span class="barBurger-2"></span>
-                <span class="barBurger-3"></span>
-            </label>
+            <div id="burgerDiv">
+                <input type="checkbox" id="burger-toggle">
+                <label id="burger" for="burger-toggle">
+                    <span class="barBurger-1"></span>
+                    <span class="barBurger-2"></span>
+                    <span class="barBurger-3"></span>
+                </label>
+            </div>
+
         </div>
         <div class="headerButtons">
             <div id="list-machines" class="listMachines">
@@ -46,6 +49,8 @@
             <textarea id="gcode" spellcheck="false"></textarea>
 
             <div class="row" style="margin-top:8px;gap:10px;flex-wrap:wrap">
+                <label class="g54warning"> Inserez valeur G54 : <input type="text" id="g54box"
+                        placeholder="Format: 0.000" value="12" /></label>
                 <label><input type="checkbox" id="chk-diam" /> X en diamètre (sinon rayon)</label>
                 <label><input type="checkbox" id="chk-show-rapid" checked /> Afficher G00</label>
                 <label><input type="checkbox" id="chk-anim" checked /> Animer</label>
