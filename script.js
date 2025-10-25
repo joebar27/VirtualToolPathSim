@@ -1,6 +1,3 @@
-console.log("Largeur: ", screen.width);
-console.log("Hauteur: ", screen.height);
-
 // Gestion des éléments UI
 $("#btn-run").addEventListener("click", () => {
     const text = $("#gcode").value.trim();
@@ -10,9 +7,25 @@ $("#btn-run").addEventListener("click", () => {
     const model = parseGCode(text, g54Value);
     $("#stat-lines").textContent = "Lignes: " + model.stats.lines;
     $("#stat-segs").textContent = "Segments: " + model.stats.segs;
-    renderSegments(model);
+    // if ($("#zoom-piece").checked) return ($("#chk-show-rapid").checked = false);
+    renderSegments(model, { g54Value });
     currentIndex = 0;
     placeTool(0, 0);
+});
+const showRapid = $("#chk-show-rapid");
+const zoom = $("#zoom-piece");  
+// Quand on clique sur "Zoom sur la pièce"
+zoom.addEventListener("change", () => {
+    if (zoom.checked) {
+        showRapid.checked = false;
+    }
+});
+
+// Quand on clique sur "Afficher G00"
+showRapid.addEventListener("change", () => {
+    if (showRapid.checked) {
+        zoom.checked = false;
+    }
 });
 $("#play").addEventListener("click", () => {
     playSim();
@@ -72,13 +85,13 @@ $("#g54box").addEventListener("input", () => {
     //   labelG54.classList.add("invalid");
     // }
     if (valueG54 !== "") {
-      // ✅ Si une valeur est saisie → vert
-      labelG54.style.color = "green";
+        // ✅ Si une valeur est saisie → vert
+        labelG54.style.color = "green";
     } else {
-      // ⚠️ Si vide → rouge
-      labelG54.style.color = "red";
+        // ⚠️ Si vide → rouge
+        labelG54.style.color = "red";
     }
-  });
+});
 
 // init demo
 const demo = `O1234 (PROGRAM NAME) ;
@@ -87,7 +100,7 @@ M0 ;
 G0 T909 ;   (Butée outil)
 G0 X40 Z0.4 ;
 M0 ;
-G0 X100 Z100 ;
+G0 X100 Z80 ;
 G50 S2000 ;
 G0 T707 ;   (outil d'ébauche)
 G96 S120 M3 ;
@@ -98,14 +111,29 @@ G90 X14 Z-10 F0.03;
 X13 ;
 X12 ;
 X11.2 ;
-G0 X100 Z100 ;
-G0 T202 ;
+G0 X100 Z80 ;
+G0 T202 ;   (outil de finition)
 G96 S150 M3 ;
 G0 X11.5 Z0 ;
 G1 X-1 F0.005 ;
 G0 X11 Z0.5 ;
-G1 X11 Z-10 F0.02 ;
-G0 X100 Z100 ;
+G1 X11 Z-20 F0.02 ;
+G0 X100 Z80 ;
+G0 T1010 ;   (outil de tronconnage)
+G0 X12 Z-19.9 ;
+G1 X10 F0.01 ;
+X10.2 ;
+X8 ;
+X8.2 ;
+X6 ;
+X6.2 ;
+X4 ;
+X4.2 ;
+X2 ;
+X2.2 ;
+X-1 ;
+G0 X100 Z80 ;
+M5 ;
 M99 ;
 `;
 $("#gcode").value = demo;

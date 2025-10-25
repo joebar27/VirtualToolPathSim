@@ -8,11 +8,10 @@ function parseGCode(text, g54Value) {
     let unitScale = 1; // G21 mm, G20 inches
     let xPiece = 0.000,
         zPiece = g54Value ; // G54 origin piece
-    let x = 0.000,
-        z = 0.000,
-        f = 0.000; // current position
+    let x = 100.000,
+        z = 80.000,
+        f = 2.000; // current position
     let stats = { lines: lines.length, segs: 0 };
-    console.log("Parsing G-code, total lines:", stats.lines);
     const segments = []; // {x1,z1,x2,z2,rapid:boolean, feed,meta}
 
     function parseParams(s) {
@@ -22,14 +21,12 @@ function parseGCode(text, g54Value) {
         while ((m = reg.exec(s))) {
             out[m[1].toUpperCase()] = parseFloat(m[2]);
         }
-        console.log("Parsing params for line:", out);
         return out;
     }
 
     for (const raw of lines) {
         // Supprime les commentaires après ";"
         const line = raw.split(";")[0].trim();
-        console.log("Line:", line);
         if (!line) continue;
         // Extraction des mots (clés et valeurs)
         const words = line.match(/[A-Za-z][-+]?[0-9]*\.?[0-9]*/g) || [];
@@ -134,7 +131,7 @@ function parseGCode(text, g54Value) {
                         stats.segs++;
                     }
                 } else {
-                    // fallback to straight line
+                    // retour à la ligne droite
                     segments.push({
                         x1: x,
                         z1: z,
@@ -152,8 +149,6 @@ function parseGCode(text, g54Value) {
             f = nf;
             continue;
         }
-
-        // other commands ignored for now
     }
 
     return { segments, stats };
