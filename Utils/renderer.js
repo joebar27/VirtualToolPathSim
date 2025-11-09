@@ -20,9 +20,8 @@ function drawGrid(w, h, step) {
             x2: x,
             y2: h,
             stroke: "#393737ff",
-            "stroke-width": 0.1,
+            "stroke-width": $("#zoom-piece").checked ? 0.05 : 0.1,
         });
-        if ($("#zoom-piece").checked) l.setAttribute("stroke-width", 0.05);
         gGrid.appendChild(l);
     }
     // Création des lignes horizontales
@@ -33,9 +32,8 @@ function drawGrid(w, h, step) {
             x2: w,
             y2: z,
             stroke: "#393737ff",
-            "stroke-width": 0.1,
+            "stroke-width": $("#zoom-piece").checked ? 0.05 : 0.1,
         });
-        if ($("#zoom-piece").checked) l.setAttribute("stroke-width", 0.05);
         gGrid.appendChild(l);
     }
     // materialisation des axes X et Z
@@ -45,7 +43,7 @@ function drawGrid(w, h, step) {
         x2: 0,
         y2: h,
         stroke: "#f50606ff",
-        "stroke-width": 0.2,
+        "stroke-width":  $("#zoom-piece").checked ? 0.05 : 0.2,
     });
     const axeZ = createEl("line", {
         x1: 0,
@@ -53,9 +51,27 @@ function drawGrid(w, h, step) {
         x2: w,
         y2: h / 2,
         stroke: "#f50606ff",
-        "stroke-width": 0.2,
+        "stroke-dasharray": "5 3",
+        "stroke-width":  $("#zoom-piece").checked ? 0.05 : 0.2,
     });
     gGrid.append(axeZ, axeX);
+}
+
+function drawBrut(brutDiameter, g54Value, pMinZ, pMaxZ) {
+    const h = stage.getAttribute("height");
+    const isDia = $("#chk-diam").checked;
+    const xs = (v) => (isDia ? v / 2 : v);
+    
+    const brut = createEl("rect", {
+        x: 0,
+        y: (h - xs(brutDiameter) * 2) / 2,
+        width: g54Value - (-pMinZ),
+        height: xs(brutDiameter),
+        fill: "rgba(54, 75, 110, 0.8)",
+        stroke: "rgba(200,0,0,0.4)",
+        "stroke-width": $("#zoom-piece").checked ? 0.1 : 0.2,
+    });
+    gGrid.appendChild(brut);
 }
 
 function renderSegments(model, opts) {
@@ -127,7 +143,13 @@ function renderSegments(model, opts) {
     clear();
     // Dessiner la grille avec les nouvelles dimensions
     drawGrid(w, h, step);
-
+    // Dessiner le rectangle du brut
+    const brutDiameter = parseFloat($("#brutbox").value) || 0;
+    // if (brutDiameter > 0) {
+    //     if (brutDiameter < pMaxX)
+    //         return alert("Erreur: Le diamètre brut est inférieur au diamètre maximal de la pièce !");
+    drawBrut(brutDiameter, g54Value, pMinZ, pMaxZ);
+    // }
     // Si X est en diametre, convertion pour le cadrage
     const xs = (v) => (isDiameter ? v / 2 : v);
 

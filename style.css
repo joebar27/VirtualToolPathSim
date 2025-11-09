@@ -14,7 +14,6 @@ body {
     background: var(--bg);
     color: var(--text);
     font-family: Inter, system-ui, Segoe UI, Roboto, Arial;
-    /* padding: 12px; */
 }
 
 /* --------------------------------------
@@ -50,8 +49,6 @@ main {
     grid-template-columns: 450px 1fr;
     grid-template-rows: 89vh;
     gap: 12px;
-    /* min-height: 70vh;
-    max-height: 75vh; */
 }
 textarea {
     width: 100%;
@@ -118,9 +115,9 @@ svg {
     color: var(--muted);
 }
 
-#g54box{
+#g54box, #brutbox {
     font-size: 16px;
-    width: 120px;
+    width: 110px;
 }
 .g54warning{
     color: #f01010;
